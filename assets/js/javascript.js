@@ -99,11 +99,15 @@ if(window.indexedDB==false){
             datanew[1]=document.getElementById('email').value;
             datanew[2]=document.getElementById('nama').value;
             datanew[3]=document.getElementById('alamat').value;
-            db.transaction(['tabel'], 'readwrite').objectStore('tabel').add({ id: 'c'+jumlah_data, value: JSON.stringify(datanew) });
-            array_data.unshift(jumlah_data);
-            db.transaction(['tabel'], 'readwrite').objectStore('tabel').delete('array_data');
-            db.transaction(['tabel'], 'readwrite').objectStore('tabel').add({ id: 'array_data', value: JSON.stringify(array_data) });
-            alert("Berhasil, silahkan refresh halaman untuk melihat perubahan");
+            if(datanew[1]==''||datanew[2]==''||datanew[3]==''){
+                alert("semua kolom input harus diisi !!!");
+            }else{
+                db.transaction(['tabel'], 'readwrite').objectStore('tabel').add({ id: 'c'+jumlah_data, value: JSON.stringify(datanew) });
+                array_data.unshift(jumlah_data);
+                db.transaction(['tabel'], 'readwrite').objectStore('tabel').delete('array_data');
+                db.transaction(['tabel'], 'readwrite').objectStore('tabel').add({ id: 'array_data', value: JSON.stringify(array_data) });
+                alert("Berhasil, silahkan refresh halaman untuk melihat perubahan");
+            }
         };
     };
     window.onscroll=function(){
@@ -121,5 +125,22 @@ if(window.indexedDB==false){
     }
     document.getElementById('backtotop').onclick=function(){
 	    document.documentElement.scrollTop=0;
+    };
+    document.getElementById('menuresponsive').onclick=function(){
+        if(document.getElementById('menuresponsive').getAttribute('data-id')=='1'){
+            document.getElementById('menuresponsive').setAttribute('data-id','2');
+            var anak=document.getElementById('menunav');
+            anak.classList.add('menuaktif');
+            anak.classList.remove('nav');
+            document.getElementById('tampungnav').classList.remove('sembunyi');
+            document.getElementById('tampungnav').appendChild(anak);
+        }else{
+            document.getElementById('menuresponsive').setAttribute('data-id','1');
+            var anak=document.getElementById('menunav');
+            anak.classList.remove('menuaktif');
+            anak.classList.add('nav');
+            document.getElementById('tampungnav').classList.add('sembunyi');
+            document.getElementById('idheader').appendChild(anak);
+        }
     };
 }

@@ -26,6 +26,45 @@ a {
     text-decoration: none;
 }
 
+#tampungnav{
+    margin-top:70px;
+    position:fixed;
+    width:100%;
+    z-index:100;
+}
+
+@media all and (min-width: 670px) {
+    #menuresponsive{
+        display:none;
+    }
+}
+
+@media all and (max-width: 670px) {
+    #menuresponsive{
+        display:block;
+    }
+}
+
+#menuresponsive{
+    float: right;
+    color: white;
+    padding: 22px 10px;
+    font-size: 25px;
+    cursor:pointer;
+}
+
+.menuaktif a{
+    text-decoration:none;
+    display:block;
+    color:cornflowerblue;
+    padding: 10px;
+    background-color: beige;
+    border-top: 1px solid #fff;
+}
+.menuaktif a:hover{
+    background-color: cadetblue;
+    color:#fff;
+}
 .container {
     max-width: 1170px;
     width: 100%;
